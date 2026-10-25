@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Paul Limotan's comic-inspired personal portfolio showcasing his IT skills, LoRaPass project, education, and creative technology journey.">
+<title>Paul Limotan | Comic Edition Portfolio</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Luckiest+Guy&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          tealbg: '#1b6771',
+          tealbgdark: '#12484f',
+          tealcard: '#11353a',
+          creambg: '#f8f4e6',
+          comicYellow: '#ffd23f',
+          comicOrange: '#ff6b35',
+          comicRed: '#e63946',
+          comicCyan: '#3a86ff',
+          comicDark: '#0d1d20',
+        },
+        fontFamily: {
+          heading: ['"Luckiest Guy"', 'cursive'],
+          subheading: ['"Fredoka"', 'sans-serif'],
+          body: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        boxShadow: {
+          'comic': '4px 4px 0px #0d1d20',
+          'comic-lg': '7px 7px 0px #0d1d20',
+          'comic-xl': '10px 10px 0px #0d1d20',
+          'comic-yellow': '5px 5px 0px #ffd23f',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+  
+  /* Custom comic style scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #12484f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ffd23f;
+    border: 3px solid #0d1d20;
+    border-radius: 8px;
+  }
+
+  /* Comic Halftone Dot Pattern Background */
+  .halftone-pattern {
+    background-image: radial-gradient(#ffffff22 15%, transparent 16%), radial-gradient(#ffffff15 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+  }
+
+  .halftone-dark {
+    background-image: radial-gradient(#0d1d2020 15%, transparent 16%);
+    background-size: 16px 16px;
+  }
+
+  /* Float animation for comic elements */
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+
+  @keyframes floatReverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-3deg); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 210, 63, 0.6)); }
+    50% { filter: drop-shadow(0 0 18px rgba(255, 210, 63, 0.9)); }
+  }
+
+  .animate-float {
+    animation: floatSlow 4s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: floatReverse 5s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: pulseGlow 3s infinite;
+  }
+
+  /* Speech bubble pointer */
+  .speech-pointer::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 28px;
+    border-width: 14px 14px 0;
+    border-style: solid;
+    border-color: #0d1d20 transparent;
+    display: block;
+    width: 0;
+  }
+  
+  .speech-pointer-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+    border-width: 11px 11px 0;
+    border-style: solid;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+  }
+</style>
+</head>
+
+<body class="bg-tealbg text-comicDark font-body antialiased selection:bg-comicYellow selection:text-comicDark">
+
+  <!-- TOP HEADER & NAV BAR -->
+  <header class="sticky top-0 z-50 bg-tealbgdark border-b-4 border-comicDark shadow-md">
+    <!-- Top colorful block banner (matches image header style) -->
+    <div class="hidden md:flex items-center justify-between px-6 py-1 bg-comicDark text-xs font-subheading text-white">
+      <div class="flex items-center gap-2">
+        <span class="bg-comicRed text-white px-2 py-0.5 rounded border border-comicDark font-bold">LATEST</span>
+        <span class="text-comicYellow">⚡ BSIT Student & Innovator Portfolio</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="bg-comicYellow text-comicDark px-2 py-0.5 rounded font-bold border border-comicDark">PHILIPPINES</span>
+        <span class="bg-comicCyan text-white px-2 py-0.5 rounded font-bold border border-comicDark">CAPSTONE: LORAPASS</span>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 bg-comicYellow border-3 border-comicDark rounded-xl shadow-comic flex items-center justify-center font-heading text-xl text-comicDark group-hover:rotate-6 transition-transform">
+          PL
+        </div>
+        <span class="font-heading text-2xl tracking-wide text-white drop-shadow-[2px_2px_0px_#0d1d20]">
+          PAUL <span class="text-comicYellow">LIMOTAN</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-2 font-subheading font-bold text-sm">
+        <a href="#home" class="px-3 py-1.5 text-white hover:text-comicYellow hover:bg-tealbg border-2 border-transparent hover:border-comicDark rounded-lg transition-all">HOME</a>
+        <a href="#about" class="px-3 py-1.5 text-white hover:text-comicYellow hover:bg-tealbg border-2 border-transparent hover:border-comicDark rounded-lg transition-all">ABOUT</a>
+        <a href="#skills" class="px-3 py-1.5 text-white hover:text-comicYellow hover:bg-tealbg border-2 border-transparent hover:border-comicDark rounded-lg transition-all">SKILLS</a>
+        <a href="#projects" class="px-3 py-1.5 text-white hover:text-comicYellow hover:bg-tealbg border-2 border-transparent hover:border-comicDark rounded-lg transition-all">PROJECTS</a>
+        <a href="#process" class="px-3 py-1.5 text-white hover:text-comicYellow hover:bg-tealbg border-2 border-transparent hover:border-comicDark rounded-lg transition-all">PROCESS</a>
+        
+        <a href="#contact" class="ml-3 px-4 py-2 bg-comicYellow text-comicDark font-heading text-base rounded-xl border-3 border-comicDark shadow-comic hover:-translate-y-0.5 active:translate-y-0.5 transition-all flex items-center gap-1">
+          CONTACT <span>↗</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 bg-comicYellow text-comicDark border-3 border-comicDark rounded-xl shadow-comic font-subheading font-bold flex items-center gap-2">
+        <span>MENU</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileNav" class="hidden md:hidden bg-tealbgdark border-b-4 border-comicDark px-4 pt-2 pb-6 space-y-2">
+      <a href="#home" class="mobile-link block px-4 py-2 text-white font-subheading font-bold rounded-lg hover:bg-tealbg">HOME</a>
+      <a href="#about" class="mobile-link block px-4 py-2 text-white font-subheading font-bold rounded-lg hover:bg-tealbg">ABOUT ME</a>
+      <a href="#skills" class="mobile-link block px-4 py-2 text-white font-subheading font-bold rounded-lg hover:bg-tealbg">SKILLS</a>
+      <a href="#projects" class="mobile-link block px-4 py-2 text-white font-subheading font-bold rounded-lg hover:bg-tealbg">PROJECTS (LORAPASS)</a>
+      <a href="#process" class="mobile-link block px-4 py-2 text-white font-subheading font-bold rounded-lg hover:bg-tealbg">HOW IT WORKS</a>
+      <a href="#contact" class="mobile-link block px-4 py-3 bg-comicYellow text-comicDark font-heading text-center rounded-xl border-3 border-comicDark shadow-comic">CONTACT ME NOW ↗</a>
+    </div>
+  </header>
+
+
+  <!-- HERO SECTION (Direct Inspired Design from User's Image) -->
+  <section id="home" class="relative halftone-pattern bg-tealbg border-b-4 border-comicDark overflow-hidden pt-8 pb-16 lg:py-16">
+    
+    <!-- Floating Background Doodles/Clouds -->
+    <div class="absolute top-10 left-6 text-comicYellow text-4xl opacity-80 animate-float" aria-hidden="true">★</div>
+    <div class="absolute top-20 right-12 text-comicYellow text-3xl opacity-80 animate-float-reverse" aria-hidden="true">✦</div>
+    <div class="absolute bottom-12 left-1/4 text-white text-3xl opacity-60 animate-float" aria-hidden="true">☁</div>
+    <div class="absolute top-1/3 right-8 text-white text-5xl opacity-40 animate-float-reverse" aria-hidden="true">☁</div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Top Comic Title Banner -->
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-2 bg-comicYellow text-comicDark font-subheading font-bold text-sm sm:text-base px-4 py-1.5 rounded-full border-3 border-comicDark shadow-comic uppercase tracking-wider mb-3">
+          <span class="w-3 h-3 bg-comicRed rounded-full border-2 border-comicDark animate-ping"></span>
+          IT Student & Technology Explorer
+        </div>
+        <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-comicYellow tracking-wider leading-none drop-shadow-[5px_5px_0px_#0d1d20] stroke-black">
+          PAUL <span class="text-white">LIMOTAN</span>
+        </h1>
+        <p class="font-subheading text-lg sm:text-2xl text-creambg font-semibold max-w-2xl mx-auto mt-2 drop-shadow-[2px_2px_0px_#0d1d20]">
+          Welcome to my creative universe of code, hardware gadgets, and emergency traffic innovations!
+        </p>
+      </div>
+
+      <!-- Main Comic Art Scene Grid (Hero Art inspired by the uploaded cartoon face & gizmos) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-6">
+        
+        <!-- Left Gizmo Card (Idea Lightbulb) -->
+        <div class="lg:col-span-3 hidden lg:flex flex-col gap-6 items-center">
+          <div class="bg-creambg p-5 rounded-2xl border-4 border-comicDark shadow-comic-lg w-full transform -rotate-3 hover:rotate-0 transition-transform">
+            <div class="flex items-center justify-between border-b-2 border-comicDark pb-2 mb-3">
+              <span class="font-subheading font-bold text-xs bg-comicRed text-white px-2 py-0.5 rounded border border-comicDark">IDEA BOX</span>
+              <span class="text-xs font-bold text-gray-500">#01</span>
+            </div>
+            
+            <!-- SVG Lightbulb Gizmo -->
+            <div class="bg-comicCyan p-4 rounded-xl border-3 border-comicDark flex justify-center items-center my-2">
+              <svg class="w-24 h-24 text-comicYellow animate-glow" viewBox="0 0 100 100" fill="currentColor">
+                <!-- Bulb outline and details -->
+                <path d="M50 10 C30 10 15 25 15 45 C15 60 25 70 35 78 L35 88 C35 91 38 94 41 94 L59 94 C62 94 65 91 65 88 L65 78 C75 70 85 60 85 45 C85 25 70 10 50 10 Z" fill="#ffd23f" stroke="#0d1d20" stroke-width="4"/>
+                <rect x="38" y="80" width="24" height="6" fill="#e63946" stroke="#0d1d20" stroke-width="3"/>
+                <rect x="42" y="88" width="16" height="5" fill="#0d1d20"/>
+                <path d="M40 45 Q50 30 60 45" fill="none" stroke="#0d1d20" stroke-width="4" stroke-linecap="round"/>
+                <!-- Rays -->
+                <line x1="50" y1="2" x2="50" y2="6" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+                <line x1="10" y1="20" x2="15" y2="23" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+                <line x1="90" y1="20" x2="85" y2="23" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            
+            <p class="font-body text-xs text-center font-bold text-comicDark mt-2">
+              "Transforming complex IT concepts into smart real-world solutions!"
+            </p>
+          </div>
+        </div>
+
+        <!-- Center Main Cartoon Character Canvas (Faithful recreation of the center cartoon character in the reference image) -->
+        <div class="lg:col-span-6 flex justify-center">
+          <div class="relative w-full max-w-md bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl halftone-dark">
+            
+            <!-- Speech Bubble -->
+            <div class="relative bg-white border-3 border-comicDark rounded-2xl p-4 shadow-comic mb-4 text-center speech-pointer speech-pointer-inner">
+              <span class="font-heading text-lg sm:text-xl text-comicRed block">"HI THERE! I'M PAUL!"</span>
+              <p class="font-subheading text-xs sm:text-sm font-bold text-comicDark">BSIT Student & Chief Developer on LoRaPass</p>
+            </div>
+
+            <!-- Custom Cartoon Inventor Artwork (SVG) based on image -->
+            <div class="relative flex justify-center my-2">
+              <svg class="w-64 h-72 sm:w-80 sm:h-80" viewBox="0 0 300 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Hair (Brown comic spiky hair) -->
+                <path d="M70 120 C50 70 80 10 130 10 C150 10 170 30 180 20 C200 10 240 30 230 80 C250 90 260 120 240 140 C220 120 210 110 200 110 Z" fill="#8b4513" stroke="#0d1d20" stroke-width="5"/>
+                <path d="M110 35 C130 15 170 10 190 40" fill="none" stroke="#65330e" stroke-width="4"/>
+
+                <!-- Ears -->
+                <circle cx="75" cy="150" r="22" fill="#ffd23f" stroke="#0d1d20" stroke-width="5"/>
+                <circle cx="75" cy="150" r="12" fill="#f8f4e6" stroke="#0d1d20" stroke-width="3"/>
+                
+                <circle cx="225" cy="150" r="22" fill="#ffd23f" stroke="#0d1d20" stroke-width="5"/>
+                <circle cx="225" cy="150" r="12" fill="#f8f4e6" stroke="#0d1d20" stroke-width="3"/>
+
+                <!-- Head Block (Yellow rectangular face shape matching image) -->
+                <rect x="90" y="80" width="120" height="150" rx="20" fill="#ffd23f" stroke="#0d1d20" stroke-width="6"/>
+
+                <!-- Big Round Glasses (Key visual from image) -->
+                <!-- Left Glass -->
+                <circle cx="118" cy="130" r="32" fill="#ffffff" stroke="#0d1d20" stroke-width="6"/>
+                <circle cx="122" cy="130" r="10" fill="#0d1d20"/>
+                <circle cx="125" cy="125" r="3" fill="#ffffff"/>
+
+                <!-- Right Glass -->
+                <circle cx="182" cy="130" r="32" fill="#ffffff" stroke="#0d1d20" stroke-width="6"/>
+                <circle cx="178" cy="130" r="10" fill="#0d1d20"/>
+                <circle cx="181" cy="125" r="3" fill="#ffffff"/>
+
+                <!-- Glasses Bridge -->
+                <line x1="150" y1="130" x2="150" y2="130" stroke="#0d1d20" stroke-width="7" stroke-linecap="round"/>
+
+                <!-- Giant Orange Nose (Distinct feature from reference image) -->
+                <path d="M150 130 C135 150 120 185 150 200 C175 185 165 150 150 130 Z" fill="#ff6b35" stroke="#0d1d20" stroke-width="5"/>
+
+                <!-- Wavy Comic Mouth -->
+                <path d="M120 215 Q135 205 150 218 T180 212" fill="none" stroke="#0d1d20" stroke-width="5" stroke-linecap="round"/>
+
+                <!-- Shirt & Neck -->
+                <rect x="130" y="230" width="40" height="25" fill="#f8f4e6" stroke="#0d1d20" stroke-width="4"/>
+                <path d="M80 255 C80 245 120 240 150 240 C180 240 220 245 220 255 L230 310 L70 310 Z" fill="#e63946" stroke="#0d1d20" stroke-width="6"/>
+                <!-- Inner collar -->
+                <path d="M130 255 L150 280 L170 255" fill="#ffd23f" stroke="#0d1d20" stroke-width="4"/>
+              </svg>
+            </div>
+
+            <!-- CTA Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 mt-4">
+              <a href="#projects" class="flex-1 bg-comicRed text-white font-heading text-center py-3 px-4 rounded-xl border-3 border-comicDark shadow-comic hover:bg-red-600 transition-colors">
+                EXPLORE PROJECTS 🚀
+              </a>
+              <a href="#about" class="flex-1 bg-comicYellow text-comicDark font-heading text-center py-3 px-4 rounded-xl border-3 border-comicDark shadow-comic hover:bg-yellow-400 transition-colors">
+                KNOW PAUL ↗
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Gadget Card (Clock / Antenna Gizmo) -->
+        <div class="lg:col-span-3 hidden lg:flex flex-col gap-6 items-center">
+          <div class="bg-creambg p-5 rounded-2xl border-4 border-comicDark shadow-comic-lg w-full transform rotate-3 hover:rotate-0 transition-transform">
+            <div class="flex items-center justify-between border-b-2 border-comicDark pb-2 mb-3">
+              <span class="font-subheading font-bold text-xs bg-comicYellow text-comicDark px-2 py-0.5 rounded border border-comicDark">HARDWARE</span>
+              <span class="text-xs font-bold text-gray-500">#02</span>
+            </div>
+            
+            <!-- SVG Clock/Antenna Gizmo -->
+            <div class="bg-comicOrange p-4 rounded-xl border-3 border-comicDark flex justify-center items-center my-2">
+              <svg class="w-24 h-24 text-white" viewBox="0 0 100 100" fill="none">
+                <!-- Clock face -->
+                <circle cx="50" cy="55" r="32" fill="#ffd23f" stroke="#0d1d20" stroke-width="4"/>
+                <circle cx="50" cy="55" r="24" fill="#ffffff" stroke="#0d1d20" stroke-width="3"/>
+                <!-- Hands -->
+                <line x1="50" y1="55" x2="50" y2="40" stroke="#0d1d20" stroke-width="4" stroke-linecap="round"/>
+                <line x1="50" y1="55" x2="62" y2="55" stroke="#e63946" stroke-width="4" stroke-linecap="round"/>
+                <!-- Antenna stick on top matching reference image -->
+                <line x1="50" y1="23" x2="50" y2="5" stroke="#0d1d20" stroke-width="4"/>
+                <circle cx="50" cy="5" r="6" fill="#e63946" stroke="#0d1d20" stroke-width="3"/>
+                <path d="M40 10 Q50 2 60 10" fill="none" stroke="#ffd23f" stroke-width="3"/>
+              </svg>
+            </div>
+            
+            <p class="font-body text-xs text-center font-bold text-comicDark mt-2">
+              "Focusing on LoRa wireless & smart traffic synchronization!"
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 01: ABOUT ME -->
+  <section id="about" class="py-16 bg-creambg border-b-4 border-comicDark relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header Badge -->
+      <div class="flex items-center gap-3 mb-8">
+        <span class="bg-comicRed text-white font-heading text-lg px-4 py-1 rounded-xl border-3 border-comicDark shadow-comic">
+          SECTION 01
+        </span>
+        <h2 class="font-heading text-3xl sm:text-5xl text-comicDark tracking-wide">
+          ABOUT THE DEVELOPER
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Side: Comic Avatar Box -->
+        <div class="lg:col-span-5">
+          <div class="bg-comicYellow border-4 border-comicDark p-6 rounded-3xl shadow-comic-xl relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-comicOrange rounded-full border-3 border-comicDark"></div>
+            
+            <div class="relative z-10 text-center">
+              <div class="w-32 h-32 mx-auto bg-creambg border-4 border-comicDark rounded-full flex items-center justify-center text-6xl shadow-comic mb-4">
+                👨‍💻
+              </div>
+              <h3 class="font-heading text-3xl text-comicDark mb-1">Paul Limotan</h3>
+              <p class="font-subheading text-sm font-bold bg-comicDark text-comicYellow inline-block px-3 py-1 rounded-lg">
+                BSIT Student at Cebu Eastern College
+              </p>
+
+              <!-- Quick Info Badges -->
+              <div class="grid grid-cols-2 gap-3 mt-6 text-left">
+                <div class="bg-white p-3 rounded-xl border-2 border-comicDark shadow-comic">
+                  <span class="text-[10px] font-extrabold text-comicRed block uppercase">Course</span>
+                  <span class="font-subheading font-bold text-xs text-comicDark">BS in Information Technology</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border-2 border-comicDark shadow-comic">
+                  <span class="text-[10px] font-extrabold text-comicCyan block uppercase">Location</span>
+                  <span class="font-subheading font-bold text-xs text-comicDark">Cebu City, Philippines</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border-2 border-comicDark shadow-comic">
+                  <span class="text-[10px] font-extrabold text-comicOrange block uppercase">Specialization</span>
+                  <span class="font-subheading font-bold text-xs text-comicDark">IoT & Web Systems</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border-2 border-comicDark shadow-comic">
+                  <span class="text-[10px] font-extrabold text-green-600 block uppercase">Role</span>
+                  <span class="font-subheading font-bold text-xs text-comicDark">Lead Student Developer</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Narrative Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-white border-4 border-comicDark p-6 sm:p-8 rounded-3xl shadow-comic-lg">
+            <h3 class="font-heading text-2xl sm:text-3xl text-comicDark mb-4 flex items-center gap-2">
+              <span>⚡</span> PASSIONATE ABOUT CREATIVE IT SOLUTIONS
+            </h3>
+            
+            <p class="font-body text-gray-800 leading-relaxed mb-4 text-base">
+              Hello! I am <strong class="text-comicRed font-bold">Paul Limotan</strong>, an Information Technology student who loves turning complex code into user-friendly applications and hardware prototypes. My academic journey is driven by hands-on creation and solving real-world challenges.
+            </p>
+
+            <p class="font-body text-gray-800 leading-relaxed mb-6 text-base">
+              Currently, my team and I are building <strong class="text-comicDark bg-comicYellow px-2 py-0.5 rounded border border-comicDark font-bold">LoRaPass</strong> — an intelligent, radio-frequency-powered emergency vehicle traffic priority system. I enjoy combining software design, embedded hardware logic, and team collaboration.
+            </p>
+
+            <!-- Highlights list -->
+            <div class="space-y-3 border-t-3 border-comicDark pt-4">
+              <div class="flex items-start gap-3">
+                <span class="bg-comicYellow text-comicDark font-bold px-2 py-1 rounded border border-comicDark text-xs">01</span>
+                <p class="text-xs sm:text-sm font-subheading font-bold text-comicDark">Dedicated to building impactful academic & community technology solutions.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="bg-comicCyan text-white font-bold px-2 py-1 rounded border border-comicDark text-xs">02</span>
+                <p class="text-xs sm:text-sm font-subheading font-bold text-comicDark">Hands-on experience with microcontroller programming (ESP32) and web logic.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="bg-comicOrange text-white font-bold px-2 py-1 rounded border border-comicDark text-xs">03</span>
+                <p class="text-xs sm:text-sm font-subheading font-bold text-comicDark">Eager team player experienced in project planning, design, and testing.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 02: SKILLS & TOOLS -->
+  <section id="skills" class="py-16 bg-tealbg border-b-4 border-comicDark halftone-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <span class="bg-comicYellow text-comicDark font-heading text-lg px-4 py-1.5 rounded-xl border-3 border-comicDark shadow-comic inline-block mb-3">
+          SECTION 02
+        </span>
+        <h2 class="font-heading text-4xl sm:text-6xl text-white drop-shadow-[4px_4px_0px_#0d1d20]">
+          SKILLS & CAPABILITIES
+        </h2>
+        <p class="font-subheading text-creambg text-lg max-w-xl mx-auto mt-2 font-semibold">
+          Tools, technologies, and methodologies I work with in my IT journey.
+        </p>
+      </div>
+
+      <!-- Skills 3-Column Comic Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Skill Card 1 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl hover:-translate-y-2 transition-transform">
+          <div class="bg-comicYellow border-3 border-comicDark rounded-2xl p-4 text-center mb-5 shadow-comic">
+            <span class="text-5xl block mb-2">🌐</span>
+            <h3 class="font-heading text-2xl text-comicDark">WEB DEVELOPMENT</h3>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-comicDark font-medium leading-relaxed mb-4">
+            Building responsive, clean web interfaces with structured markup, modern styling, and interactive scripting.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 border-t-2 border-comicDark">
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">HTML5</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">CSS3</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">JavaScript</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Skill Card 2 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl hover:-translate-y-2 transition-transform">
+          <div class="bg-comicRed border-3 border-comicDark rounded-2xl p-4 text-center mb-5 shadow-comic text-white">
+            <span class="text-5xl block mb-2">📡</span>
+            <h3 class="font-heading text-2xl text-white">IOT & HARDWARE</h3>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-comicDark font-medium leading-relaxed mb-4">
+            Connecting physical sensors and radio modules to smart microcontrollers for real-time telemetry and automation.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 border-t-2 border-comicDark">
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">ESP32</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">LoRa Ra-02</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Arduino IDE</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Sensors</span>
+          </div>
+        </div>
+
+        <!-- Skill Card 3 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl hover:-translate-y-2 transition-transform">
+          <div class="bg-comicCyan border-3 border-comicDark rounded-2xl p-4 text-center mb-5 shadow-comic text-white">
+            <span class="text-5xl block mb-2">🧠</span>
+            <h3 class="font-heading text-2xl text-white">PROBLEM SOLVING</h3>
+          </div>
+          <p class="font-body text-xs sm:text-sm text-comicDark font-medium leading-relaxed mb-4">
+            Analyzing operational challenges, planning systematic workflows, and collaborating effectively in team projects.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 border-t-2 border-comicDark">
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Logic Design</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Team Leadership</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">Documentation</span>
+            <span class="bg-white text-comicDark font-subheading font-bold text-xs px-2.5 py-1 rounded-lg border-2 border-comicDark shadow-sm">System Testing</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 03: FEATURED PROJECT (LORAPASS) -->
+  <!-- Direct layout style matching the "Read & Watch" double comic panel from reference image -->
+  <section id="projects" class="py-16 bg-creambg border-b-4 border-comicDark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+        <div>
+          <span class="bg-comicOrange text-white font-heading text-lg px-4 py-1.5 rounded-xl border-3 border-comicDark shadow-comic inline-block mb-2">
+            SECTION 03
+          </span>
+          <h2 class="font-heading text-4xl sm:text-5xl text-comicDark">
+            FEATURED CAPSTONE PROJECT
+          </h2>
+        </div>
+        <div class="bg-comicYellow text-comicDark font-subheading font-bold px-4 py-2 rounded-xl border-3 border-comicDark shadow-comic text-sm">
+          📍 Colon Street Intersection Pilot
+        </div>
+      </div>
+
+      <!-- Main Project Dual Panel (Stylized after image's "Read to Watch" / "Watre Watch" dual boxes) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Panel 1: Dark Teal Comic Box (Read & Watch style) -->
+        <div class="lg:col-span-6 bg-tealcard border-4 border-comicDark rounded-3xl p-6 sm:p-8 shadow-comic-xl text-white relative overflow-hidden">
+          
+          <div class="flex items-center justify-between border-b-2 border-teal-700 pb-4 mb-6">
+            <span class="bg-comicRed text-white font-heading text-sm px-3 py-1 rounded-lg border-2 border-comicDark">
+              CAPSTONE PROJECT
+            </span>
+            <span class="font-subheading text-xs text-comicYellow font-bold">PROJECT CODE: #LP-2026</span>
+          </div>
+
+          <h3 class="font-heading text-4xl sm:text-5xl text-comicYellow tracking-wider mb-3 leading-none drop-shadow-[3px_3px_0px_#0d1d20]">
+            LORAPASS
+          </h3>
+
+          <p class="font-subheading text-base text-teal-100 font-semibold mb-6">
+            An Adaptive Traffic Signal Management System Using LoRa RA-02 and ESP32 for Ambulance & Fire Truck Priority.
+          </p>
+
+          <!-- SVG Traffic Light Graphic -->
+          <div class="bg-tealbg border-3 border-comicDark p-4 rounded-2xl flex items-center gap-6 mb-6">
+            <svg class="w-16 h-28 flex-shrink-0" viewBox="0 0 60 120" fill="none">
+              <rect x="5" y="5" width="50" height="110" rx="12" fill="#0d1d20" stroke="#ffd23f" stroke-width="3"/>
+              <!-- Red Light -->
+              <circle cx="30" cy="25" r="12" fill="#e63946" stroke="#0d1d20" stroke-width="2"/>
+              <!-- Yellow Light -->
+              <circle cx="30" cy="60" r="12" fill="#ffd23f" stroke="#0d1d20" stroke-width="2"/>
+              <!-- Green Light (Active Glow) -->
+              <circle cx="30" cy="95" r="12" fill="#2ec4b6" class="animate-pulse" stroke="#0d1d20" stroke-width="2"/>
+            </svg>
+            <div>
+              <h4 class="font-heading text-xl text-white">EMERGENCY PREEMPTION</h4>
+              <p class="font-body text-xs text-teal-100 mt-1">
+                When an emergency vehicle approaches, LoRa signals automatically request green light passage to reduce delay.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs font-subheading text-white">
+            <div class="flex items-center gap-2">
+              <span class="text-comicYellow">✔</span>
+              <span>Long-range radio RF technology (LoRa RA-02)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-comicYellow">✔</span>
+              <span>ESP32 dynamic signal processing</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-comicYellow">✔</span>
+              <span>Designed specifically for high-density streets like Colon St.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Panel 2: Vibrant Yellow Comic Box (Watre Watch style in image) -->
+        <div class="lg:col-span-6 bg-comicYellow border-4 border-comicDark rounded-3xl p-6 sm:p-8 shadow-comic-xl text-comicDark flex flex-col justify-between">
+          
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-comicDark pb-4 mb-6">
+              <span class="bg-comicDark text-comicYellow font-heading text-sm px-3 py-1 rounded-lg">
+                KEY HIGHLIGHTS
+              </span>
+              <span class="font-subheading text-xs font-bold text-comicDark">STATUS: PROTOTYPE</span>
+            </div>
+
+            <h3 class="font-heading text-3xl sm:text-4xl text-comicDark tracking-wide mb-4">
+              WHY LORAPASS MATTERS
+            </h3>
+
+            <div class="space-y-4 font-body text-sm text-comicDark font-medium">
+              <div class="bg-white p-4 rounded-xl border-3 border-comicDark shadow-comic">
+                <strong class="font-heading text-base text-comicRed block mb-1">⏱️ Seconds Save Lives</strong>
+                Traffic congestion significantly delays emergency responses. LoRaPass clears a green wave for emergency responders safely.
+              </div>
+
+              <div class="bg-white p-4 rounded-xl border-3 border-comicDark shadow-comic">
+                <strong class="font-heading text-base text-comicCyan block mb-1">📡 Infrastructure Independent</strong>
+                Does not rely on cellular internet; operates via direct long-range radio signals for high reliability during crises.
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t-3 border-comicDark flex items-center justify-between">
+            <span class="font-subheading font-bold text-xs uppercase">Target: Colon Street Cebu</span>
+            <button onclick="openProjectModal()" class="bg-comicRed text-white font-heading px-5 py-2.5 rounded-xl border-3 border-comicDark shadow-comic hover:bg-red-600 transition-colors">
+              FULL DETAILS ↗
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 04: PROCESS / HOW IT WORKS -->
+  <section id="process" class="py-16 bg-tealbg border-b-4 border-comicDark halftone-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <span class="bg-comicRed text-white font-heading text-lg px-4 py-1.5 rounded-xl border-3 border-comicDark shadow-comic inline-block mb-3">
+          SECTION 04
+        </span>
+        <h2 class="font-heading text-4xl sm:text-6xl text-white drop-shadow-[4px_4px_0px_#0d1d20]">
+          HOW IT WORKS
+        </h2>
+        <p class="font-subheading text-creambg text-lg max-w-xl mx-auto mt-2 font-semibold">
+          Step-by-step breakdown of the LoRaPass system architecture.
+        </p>
+      </div>
+
+      <!-- Process Steps Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Step 1 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl relative">
+          <div class="absolute -top-5 left-6 bg-comicYellow text-comicDark font-heading text-xl px-4 py-1 rounded-xl border-3 border-comicDark shadow-comic">
+            STEP 01
+          </div>
+          <div class="mt-4 mb-4 text-center">
+            <span class="text-6xl">🚑</span>
+          </div>
+          <h3 class="font-heading text-2xl text-comicDark text-center mb-2">VEHICLE TRANSMISSION</h3>
+          <p class="font-body text-xs sm:text-sm text-comicDark text-center font-medium leading-relaxed">
+            The emergency vehicle's onboard ESP32 + LoRa module broadcasts an encrypted priority request signal when dispatched.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl relative">
+          <div class="absolute -top-5 left-6 bg-comicCyan text-white font-heading text-xl px-4 py-1 rounded-xl border-3 border-comicDark shadow-comic">
+            STEP 02
+          </div>
+          <div class="mt-4 mb-4 text-center">
+            <span class="text-6xl">📡</span>
+          </div>
+          <h3 class="font-heading text-2xl text-comicDark text-center mb-2">LORA RECEIVER GATEWAY</h3>
+          <p class="font-body text-xs sm:text-sm text-comicDark text-center font-medium leading-relaxed">
+            The intersection controller receives the RF signal, calculates distance & direction, and overrides standard light timing.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-creambg border-4 border-comicDark rounded-3xl p-6 shadow-comic-xl relative">
+          <div class="absolute -top-5 left-6 bg-comicRed text-white font-heading text-xl px-4 py-1 rounded-xl border-3 border-comicDark shadow-comic">
+            STEP 03
+          </div>
+          <div class="mt-4 mb-4 text-center">
+            <span class="text-6xl">🚦</span>
+          </div>
+          <h3 class="font-heading text-2xl text-comicDark text-center mb-2">GREEN LIGHT WAVE</h3>
+          <p class="font-body text-xs sm:text-sm text-comicDark text-center font-medium leading-relaxed">
+            Traffic lights switch to green safely for emergency vehicles and reset automatically once the vehicle passes through.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 05: GOALS & FUTURE -->
+  <section class="py-16 bg-creambg border-b-4 border-comicDark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center gap-3 mb-10">
+        <span class="bg-comicYellow text-comicDark font-heading text-lg px-4 py-1 rounded-xl border-3 border-comicDark shadow-comic">
+          SECTION 05
+        </span>
+        <h2 class="font-heading text-3xl sm:text-5xl text-comicDark">
+          FUTURE ASPIRATIONS
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-white border-3 border-comicDark rounded-2xl p-5 shadow-comic hover:bg-comicYellow transition-colors group">
+          <div class="font-heading text-3xl text-comicRed mb-2 group-hover:text-comicDark">01.</div>
+          <h3 class="font-heading text-xl text-comicDark mb-2">Graduation</h3>
+          <p class="font-body text-xs text-comicDark font-medium">Earn BSIT degree from Cebu Eastern College with honors & strong project portfolio.</p>
+        </div>
+
+        <div class="bg-white border-3 border-comicDark rounded-2xl p-5 shadow-comic hover:bg-comicCyan transition-colors group">
+          <div class="font-heading text-3xl text-comicCyan mb-2 group-hover:text-white">02.</div>
+          <h3 class="font-heading text-xl text-comicDark mb-2">IoT Mastery</h3>
+          <p class="font-body text-xs text-comicDark font-medium">Expand knowledge in smart city tech, sensor integration, and cloud telemetry.</p>
+        </div>
+
+        <div class="bg-white border-3 border-comicDark rounded-2xl p-5 shadow-comic hover:bg-comicOrange transition-colors group">
+          <div class="font-heading text-3xl text-comicOrange mb-2 group-hover:text-white">03.</div>
+          <h3 class="font-heading text-xl text-comicDark mb-2">Full-Stack Dev</h3>
+          <p class="font-body text-xs text-comicDark font-medium">Build complete web applications connecting real-time databases and modern UI.</p>
+        </div>
+
+        <div class="bg-white border-3 border-comicDark rounded-2xl p-5 shadow-comic hover:bg-comicRed transition-colors group">
+          <div class="font-heading text-3xl text-comicRed mb-2 group-hover:text-white">04.</div>
+          <h3 class="font-heading text-xl text-comicDark mb-2">Community Impact</h3>
+          <p class="font-body text-xs text-comicDark font-medium">Develop technology solutions that make everyday life safer and more efficient.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 06: CONTACT & FOOTER (Matches dark bottom footer block from reference image) -->
+  <footer id="contact" class="bg-tealbgdark text-white pt-16 pb-12 border-t-4 border-comicDark relative overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Big Contact Card -->
+      <div class="bg-comicYellow border-4 border-comicDark rounded-3xl p-8 sm:p-12 shadow-comic-xl text-comicDark mb-16 halftone-dark">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-8">
+            <span class="bg-comicRed text-white font-heading text-sm px-3 py-1 rounded-lg border-2 border-comicDark inline-block mb-3">
+              LET'S CONNECT!
+            </span>
+            <h2 class="font-heading text-4xl sm:text-6xl text-comicDark tracking-wide mb-3">
+              WANT TO COLLABORATE OR ASK ABOUT LORAPASS?
+            </h2>
+            <p class="font-subheading text-base sm:text-lg text-comicDark font-bold">
+              Feel free to reach out for academic inquiries, technology discussions, or project collaborations!
+            </p>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col gap-3">
+            <button onclick="copyEmail()" id="copyEmailBtn" class="bg-comicRed text-white font-heading text-lg py-4 px-6 rounded-2xl border-3 border-comicDark shadow-comic hover:bg-red-600 transition-all flex items-center justify-center gap-2">
+              <span>📋 COPY EMAIL</span>
+            </button>
+            <a href="mailto:your-email@example.com" class="bg-white text-comicDark font-heading text-center text-lg py-4 px-6 rounded-2xl border-3 border-comicDark shadow-comic hover:bg-gray-100 transition-all">
+              SEND DIRECT MAIL ✉
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Lower Footer Row -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t-2 border-teal-800">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-comicYellow border-2 border-comicDark rounded-lg flex items-center justify-center font-heading text-comicDark">
+            PL
+          </div>
+          <span class="font-heading text-xl text-white">PAUL LIMOTAN</span>
+        </div>
+
+        <p class="font-subheading text-xs text-teal-200 text-center font-semibold">
+          © <span id="year">2026</span> Paul Limotan. Designed with comic visual art style & Tailwind CSS.
+        </p>
+
+        <div class="flex gap-2">
+          <span class="bg-comicRed text-white text-xs font-bold px-2 py-1 rounded border border-comicDark">BSIT</span>
+          <span class="bg-comicYellow text-comicDark text-xs font-bold px-2 py-1 rounded border border-comicDark">LORAPASS</span>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden bg-comicDark/80 flex items-center justify-center p-4">
+    <div class="bg-creambg border-4 border-comicDark rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-comic-xl relative max-h-[90vh] overflow-y-auto">
+      
+      <button onclick="closeProjectModal()" aria-label="Close modal" class="absolute top-4 right-4 bg-comicRed text-white font-heading w-10 h-10 rounded-xl border-3 border-comicDark shadow-comic flex items-center justify-center text-xl hover:bg-red-600">
+        ✕
+      </button>
+
+      <div class="inline-block bg-comicYellow text-comicDark font-heading text-xs px-3 py-1 rounded-lg border-2 border-comicDark mb-2">
+        CAPSTONE DEEP DIVE
+      </div>
+
+      <h3 class="font-heading text-3xl text-comicDark mb-4">LoRaPass System Architecture</h3>
+
+      <div class="space-y-4 font-body text-sm text-comicDark leading-relaxed">
+        <p>
+          <strong>Project Title:</strong> LoRaPass: An IoT-Based Adaptive Traffic Signal Management System Using LoRa RA-02 and ESP32 for Ambulance and Fire Truck Priority on Colon Street.
+        </p>
+
+        <div class="bg-white p-4 rounded-xl border-2 border-comicDark shadow-comic">
+          <h4 class="font-heading text-base text-comicRed mb-1">Hardware Components:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-xs">
+            <li><strong>ESP32 Microcontroller:</strong> Manages logic, signal state switching, and communication processing.</li>
+            <li><strong>LoRa RA-02 Module (433MHz):</strong> Transmits long-range radio requests through dense urban structures.</li>
+            <li><strong>Traffic Light Module Prototype:</strong> Displays synchronized red, yellow, and green signal state overrides.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border-2 border-comicDark shadow-comic">
+          <h4 class="font-heading text-base text-comicCyan mb-1">Implementation Focus:</h4>
+          <p class="text-xs">
+            Tested for the specific urban layout of Colon Street in Cebu City, prioritizing emergency vehicle arrival times while minimizing disruption to side-street traffic flow.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t-2 border-comicDark text-right">
+        <button onclick="closeProjectModal()" class="bg-comicYellow text-comicDark font-heading px-6 py-2 rounded-xl border-3 border-comicDark shadow-comic">
+          GOT IT!
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Set Current Year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Navigation Drawer Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+      });
+    });
+
+    // Project Modal Logic
+    function openProjectModal() {
+      document.getElementById('projectModal').classList.remove('hidden');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+    }
+
+    // Close modal on escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeProjectModal();
+    });
+
+    // Copy Email Functionality
+    function copyEmail() {
+      const email = 'your-email@example.com';
+      const copyBtn = document.getElementById('copyEmailBtn');
+      
+      // Fallback copy method
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      // Visual feedback
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<span>✅ COPIED!</span>';
+      copyBtn.classList.replace('bg-comicRed', 'bg-green-600');
+
+      setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+        copyBtn.classList.replace('bg-green-600', 'bg-comicRed');
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>
